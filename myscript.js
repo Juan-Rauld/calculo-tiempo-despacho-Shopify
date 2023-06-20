@@ -4,43 +4,39 @@ cutOffTime.setHours(12);
 cutOffTime.setMinutes(0);
 cutOffTime.setSeconds(0);
 
-// calcular tiempo restante
-const horasFaltantes = now.getHours() - cutOffTime.getHours();
-const minutosFaltantes = now.getMinutes() - cutOffTime.getMinutes();
-const segundosFaltantes = now.getSeconds() - cutOffTime.getSeconds();
+// Calcular tiempo restante
+let horasFaltantes = Math.abs(cutOffTime.getHours() - now.getHours());
+let minutosFaltantes = Math.abs(cutOffTime.getMinutes() - now.getMinutes());
+let segundosFaltantes = Math.abs(cutOffTime.getSeconds() - now.getSeconds());
 
 function checkWeek(now) {
     const diaSemana = now.getDay();
-    return diaSemana >= 1 && diaSemana <= 5
+    return diaSemana >= 1 && diaSemana <= 5;
 }
 
 function mensajeHoras() {
-    return 'document.getElementById("delivery-message").innerHTML = "Si compras ahora tu pedido llegará hoy.<br> Compra dentro de <span class='remaining - time'>" + horasFaltantes + " hora, " + minutosFaltantes + " minutos, y " + segundosFaltantes + " segundos.</span><br><span class='santiago'>Sólo en la provincia de Santiago</span>";'
+    document.getElementById("delivery-message").innerHTML = "Si compras ahora tu pedido llegará hoy.<br> Compra dentro de <span class='remaining-time'>" + horasFaltantes + " hora, " + minutosFaltantes + " minutos, y " + segundosFaltantes + " segundos.</span><br><span class='santiago'>Sólo en la provincia de Santiago</span>";
 }
 
-checkWeek(now);
-
 function deliveryMessage() {
-    if (checkWeek(now) === 6) {
-        console.log('tu pedido llega el Lunes porque hoy es Sabado')
-    } else if (checkWeek(now) === 0) {
-        console.log('tu pedido llega el Lunes porque hoy es Domingo')
-    } else {
-        console.log('dia de semana')
+    if (checkWeek(now)) {
+        console.log('Día de semana');
         if (now.getTime() < cutOffTime.getTime()) {
-            console.log('tu pedido llega hoy')
-            return mensajeHoras()
-        } else now.getTime() > cutOffTime.getTime(){
-            console.log('tu pedido llega mañana')
+            console.log('Tu pedido llega hoy');
+            mensajeHoras();
+        } else {
+            console.log('Tu pedido llega mañana');
         }
+    } else if (now.getDay() === 6) {
+        console.log('Tu pedido llega el Lunes porque hoy es Sábado');
+    } else if (now.getDay() === 0) {
+        console.log('Tu pedido llega el Lunes porque hoy es Domingo');
     }
 }
 
 deliveryMessage();
 
-// calcular tiempo restante
-const remainingHours = now.getHours() - cutOffTime.getHours();
-const remainingMinutes = now.getMinutes() - cutOffTime.getMinutes();
-const remainingSeconds = now.getSeconds() - cutOffTime.getSeconds();
-
-
+// Calcular tiempo restante
+const remainingHours = cutOffTime.getHours() - now.getHours();
+const remainingMinutes = cutOffTime.getMinutes() - now.getMinutes();
+const remainingSeconds = cutOffTime.getSeconds() - now.getSeconds();
