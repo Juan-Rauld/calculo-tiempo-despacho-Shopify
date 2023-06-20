@@ -31,9 +31,8 @@ function updateCountdown() {
     mensajeHoras();
 }
 
-
 function mensajeHoras() {
-    document.getElementById("delivery-message").innerHTML = "Si compras ahora tu pedido llegará hoy.<br> Compra dentro de <span class='remaining-time'>" + horasFaltantes + " hora, " + minutosFaltantes + " minutos, y " + segundosFaltantes + " segundos.</span><br><span class='santiago'>Sólo en la provincia de Santiago</span>";
+    document.getElementById("delivery-message").innerHTML = "Si compras ahora tu pedido llegará hoy.<br> Compra dentro de <span class='remaining-time'>" + Math.abs(horasFaltantes) + " horas, " + Math.abs(minutosFaltantes) + " minutos, y " + Math.abs(segundosFaltantes) + " segundos.</span><br><span class='santiago'>Sólo en la provincia de Santiago</span>";
 }
 
 function deliveryMessage() {
