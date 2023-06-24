@@ -1,5 +1,4 @@
-/* console.log("hola") */
-
+/* 
 // Set the cut-off time for same-day delivery (12:00 am)
 var cutOffTime = new Date();
 cutOffTime.setHours(12);
@@ -80,3 +79,4 @@ if (now < cutOffTime.getTime()) {
     setInterval(updateTimer, 1000);
 }
 
+ */
