@@ -25,9 +25,10 @@ function deliveryMessage() {
     if (checkWeek(now)) {
         if (now.getDay() === 5 && now.getTime() > cutOffTime.getTime()) {
             document.getElementById("delivery-message").innerHTML = 'Tu pedido llega el Lunes porque hoy es Viernes después del mediodía';
-        } else if (now.getTime() < cutOffTime.getTime()) {
+        } else if (now.getDay() === 1 && now.getTime() < cutOffTime.getTime()) {
             updateCountdown(cutOffTime);
             setInterval(() => updateCountdown(cutOffTime), 1000);
+            document.getElementById("delivery-message").innerHTML = "Si compras ahora tu pedido llegará hoy.<br> Compra dentro de <span class='remaining-time'>" + Math.abs(horasFaltantes) + " horas, " + Math.abs(minutosFaltantes) + " minutos, y " + Math.abs(segundosFaltantes) + " segundos.</span><br><span class='santiago'>Sólo en la provincia de Santiago</span>";
         } else {
             document.getElementById("delivery-message").innerHTML = 'Tu pedido llega mañana';
         }
